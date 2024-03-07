@@ -57,7 +57,6 @@ readonly class Page extends BaseStaticPageLayout
                 <meta name="viewport" content="width=device-width, initial-scale=1">
                 <meta name="turbo-refresh-method" content="morph">
                 <meta name="turbo-refresh-scroll" content="preserve">
-                <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
                 <title>PHP Goodness</title>
         HTML;
         yield $renderedPreloads;

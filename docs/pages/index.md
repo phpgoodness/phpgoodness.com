@@ -31,12 +31,4 @@ Feel free to reach out and contribute and materials you find valuable.
 
 ## Authors
 
-<div
-    class="badge-base LI-profile-badge"
-    data-locale="en_US"
-    data-size="large"
-    data-theme="light"
-    data-type="HORIZONTAL"
-    data-vanity="mateusz-charytoniuk"
-    data-version="v1"
-></div>
+<a href="https://www.linkedin.com/in/mateusz-charytoniuk/" target="_blank">Mateusz Charytoniuk</a>

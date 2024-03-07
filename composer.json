@@ -1,11 +1,10 @@
 {
-    "name": "distantmagic/resonance-project",
+    "name": "phpgoodness/phpgoodness.com",
     "type": "project",
     "require": {
         "php": ">=8.2",
         "distantmagic/resonance": "^0.27.3"
     },
-    "license": "MIT",
     "autoload": {
         "files": [
             "constants.php"

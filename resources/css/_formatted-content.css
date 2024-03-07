@@ -1,0 +1,34 @@
+.formatted-content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+
+  h1, h2, h3, h4 {
+    font-weight: bold;;
+    line-height: 1.2;
+  }
+
+  h2, h3, h4 {
+    margin-top: 20px;
+  }
+
+  h1 {
+    font-size: 2.5em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  ol, ul {
+    padding-left: 40px;
+
+    p + p {
+      margin-top: 5px;
+    }
+  }
+
+  p {
+    line-height: 1.5;
+  }
+}

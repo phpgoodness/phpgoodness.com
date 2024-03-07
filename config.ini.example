@@ -1,6 +1,7 @@
 [app]
 env = development
 esbuild_metafile = esbuild-meta-docs.json
+url = https://phpgoodness.com
 
 [database]
 default[driver] = mysql

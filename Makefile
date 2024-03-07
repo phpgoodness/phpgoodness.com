@@ -1,4 +1,4 @@
-BUILD_ID ?= 1
+BUILD_ID := $(shell date +"%s%N")
 COMPOSER_BIN ?= $(shell which composer)
 ESBUILD_TARGET_DIRECTORY ?= docs/build/assets
 PHP_BIN ?= $(shell which php)
@@ -29,8 +29,8 @@ TS_SOURCES := \
 
 CSS_ENTRYPOINTS := $(wildcard resources/css/docs-*.css)
 TS_ENTRYPOINTS := \
-	$(wildcard resources/ts/controller_*.ts) \
-	$(wildcard resources/ts/global_*.ts)
+	$(wildcard resources/ts/docs/controller_*.ts) \
+	$(wildcard resources/ts/docs/global_*.ts)
 
 # -----------------------------------------------------------------------------
 # Real targets
@@ -72,21 +72,38 @@ yarn.lock: package.json
 
 .PHONY: esbuild
 esbuild: $(CSS_SOURCES) node_modules
+	rm -rf $(ESBUILD_TARGET_DIRECTORY)/*;
+
 	./node_modules/.bin/esbuild \
+		--asset-names="./[name]_$(BUILD_ID)" \
 		--bundle \
-		--asset-names="./[name]_[hash]" \
-		--entry-names="./[name]_[hash]" \
+		--define:__APP_ENV=\"$(APP_ENV)\" \
+		--define:__BUILD_ID=\"$(BUILD_ID)\" \
+		--define:__CACHE_BUST_QS=\"$(CACHE_BUST_QS)\" \
+		--define:__STATIC_PATH=\"$(STATIC_PATH)\" \
+		--define:__WEBSOCKET_URL=\"$(WEBSOCKET_URL)\" \
+		--define:global=globalThis \
+		--define:process.env.MIX_NODE_ENV=\"$(NODE_ENV)\" \
+		--define:process.env.MIX_SENTRY_DSN=\"test\" \
+		--entry-names="./[name]_$(BUILD_ID)" \
 		--format=esm \
+		--log-limit=0 \
+		--loader:.frag=text \
 		--loader:.jpg=file \
 		--loader:.otf=file \
+		--loader:.png=file \
 		--loader:.svg=file \
 		--loader:.ttf=file \
+		--loader:.vert=text \
 		--loader:.webp=file \
+		--loader:.woff2=file \
 		--metafile=esbuild-meta-docs.json \
-		--outdir=$(ESBUILD_TARGET_DIRECTORY) \
+		--minify \
+		--outdir=./$(ESBUILD_TARGET_DIRECTORY) \
+		--platform=browser \
 		--sourcemap \
 		--splitting \
-		--target=safari16 \
+		--target=es2022,safari16 \
 		--tree-shaking=true \
 		--tsconfig=tsconfig.json \
 		$(CSS_ENTRYPOINTS) \

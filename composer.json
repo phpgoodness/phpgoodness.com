@@ -3,7 +3,7 @@
     "type": "project",
     "require": {
         "php": ">=8.2",
-        "distantmagic/resonance": "^0.11.1"
+        "distantmagic/resonance": "^0.27.3"
     },
     "license": "MIT",
     "autoload": {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Template\StaticPageLayout;
 
+use Distantmagic\Docs\Template\Component\StaticPageBreadcrumbs;
 use Distantmagic\Docs\Template\StaticPageLayout as BaseStaticPageLayout;
 use Distantmagic\Resonance\Attribute\Singleton;
 use Distantmagic\Resonance\Attribute\StaticPageLayout;
@@ -13,6 +14,7 @@ use Distantmagic\Resonance\EsbuildMetaEntryPoints;
 use Distantmagic\Resonance\EsbuildMetaPreloadsRenderer;
 use Distantmagic\Resonance\SingletonCollection;
 use Distantmagic\Resonance\StaticPage;
+use Distantmagic\Resonance\StaticPageAggregate;
 use Distantmagic\Resonance\StaticPageConfiguration;
 use Distantmagic\Resonance\StaticPageContentRenderer;
 use Ds\PriorityQueue;
@@ -22,16 +24,19 @@ use Generator;
 #[StaticPageLayout('modernphp:page')]
 readonly class Page extends BaseStaticPageLayout
 {
+    private StaticPageBreadcrumbs $breadcrumbs;
     private EsbuildMeta $esbuildMeta;
 
     public function __construct(
         private EsbuildMetaBuilder $esbuildMetaBuilder,
-        private StaticPageConfiguration $staticPageConfiguration,
+        StaticPageAggregate $staticPageAggregate,
+        StaticPageConfiguration $staticPageConfiguration,
         private StaticPageContentRenderer $staticPageContentRenderer,
     ) {
+        $this->breadcrumbs = new StaticPageBreadcrumbs($staticPageAggregate->staticPages);
         $this->esbuildMeta = $this->esbuildMetaBuilder->build(
-            $this->staticPageConfiguration->esbuildMetafile,
-            $this->staticPageConfiguration->stripOutputPrefix,
+            $staticPageConfiguration->esbuildMetafile,
+            $staticPageConfiguration->stripOutputPrefix,
         );
     }
 
@@ -58,6 +63,9 @@ readonly class Page extends BaseStaticPageLayout
                 <meta name="turbo-refresh-method" content="morph">
                 <meta name="turbo-refresh-scroll" content="preserve">
                 <title>PHP Goodness</title>
+                <link rel="preconnect" href="https://fonts.googleapis.com">
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         HTML;
         yield $renderedPreloads;
         yield $renderedStylesheets;
@@ -68,6 +76,13 @@ readonly class Page extends BaseStaticPageLayout
             <div class="body-content">
                 <nav class="primary-navigation"></nav>
                 <main class="primary-content-wrapper">
+        HTML;
+        yield <<<'HTML'
+                    <nav class="breadcrumbs documentation__breadcrumbs">
+        HTML;
+        yield from $this->breadcrumbs->render($staticPage);
+        yield <<<'HTML'
+                    </nav>
                     <div class="primary-content formatted-content">
         HTML;
         yield from $this->renderBodyContent($staticPage);
@@ -94,6 +109,8 @@ readonly class Page extends BaseStaticPageLayout
     {
         $scripts->push('global_turbo.ts', 900);
         $scripts->push('global_stimulus.ts', 800);
+        $scripts->push('controller_graphviz.ts', 0);
+        $scripts->push('controller_hljs.ts', 0);
     }
 
     /**
@@ -102,6 +119,7 @@ readonly class Page extends BaseStaticPageLayout
     protected function registerStylesheets(PriorityQueue $stylesheets): void
     {
         $stylesheets->push('docs-common.css', 1000);
+        $stylesheets->push('docs-hljs.css', 1000);
     }
 
     /**

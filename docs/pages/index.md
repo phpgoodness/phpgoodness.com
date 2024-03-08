@@ -1,6 +1,6 @@
 ---
 layout: modernphp:page
-title: modernphp.org
+title: phpgoodness.com
 description: Just a placeholder
 ---
 
@@ -13,6 +13,10 @@ This website's current content is just a placeholder and I will be posting new
 content here in the future. The project aims to highlight PHP's good parts, 
 modern approaches to PHP development, and its ecosystem. It also seeks to 
 respond to some of the language critiques.
+
+## Articles
+
+{{articles/*}}
 
 ## Contribute
 
@@ -31,4 +35,4 @@ Feel free to reach out and contribute and materials you find valuable.
 
 ## Authors
 
-<a href="https://www.linkedin.com/in/mateusz-charytoniuk/" target="_blank">Mateusz Charytoniuk</a>
+[Mateusz Charytoniuk](https://www.linkedin.com/in/mateusz-charytoniuk/)

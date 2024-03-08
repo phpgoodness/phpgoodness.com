@@ -45,7 +45,7 @@ a {
   text-decoration-color: var(--color-link-decoration);
   text-decoration-line: underline;
   text-decoration-style: solid;
-  text-decoration-thickness: 3px;
+  text-decoration-thickness: 4px;
 }
 
 a:hover {

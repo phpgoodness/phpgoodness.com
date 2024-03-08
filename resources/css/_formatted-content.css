@@ -1,15 +1,40 @@
+.admonition {
+  border-color: #555;
+  border-style: solid;
+  border-width: 2px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px 20px 20px;
+  row-gap: 1em;
+}
+
+.admonition.admonition--caution {
+  border-color: #a0721e;
+}
+
+.admonition.admonition--danger {
+  border-color: #a61f1f;
+}
+
+.admonition.admonition--info {
+  border-color: #3b5dbb;
+}
+
+.admonition.admonition--tip {
+  border-color: #669a52;
+}
+
 .formatted-content {
   display: flex;
   flex-direction: column;
   row-gap: 20px;
 
-  h1, h2, h3, h4 {
-    font-weight: bold;;
-    line-height: 1.2;
+  h1, h2 {
+    font-family: var(--font-family-serif);
   }
 
-  h2, h3, h4 {
-    margin-top: 20px;
+  h1, h2, h3 {
+    line-height: 1.3;
   }
 
   h1 {
@@ -18,10 +43,29 @@
 
   h2 {
     font-size: 1.5em;
+    margin-top: 40px;
+  }
+
+  h3 {
+    font-weight: bold;
+    margin-top: 20px;
+  }
+
+  h2 + h3 {
+    margin-top: 0;
   }
 
   ol, ul {
-    padding-left: 40px;
+    padding-left: 30px;
+
+    pre {
+      margin: 20px 0;
+    }
+
+    li {
+      line-height: 1.5;
+      padding: 2px 0;
+    }
 
     p + p {
       margin-top: 5px;
@@ -30,5 +74,9 @@
 
   p {
     line-height: 1.5;
+  }
+
+  ul {
+    list-style-type: " -   ";
   }
 }

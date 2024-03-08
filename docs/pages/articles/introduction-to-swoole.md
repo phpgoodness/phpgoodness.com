@@ -297,7 +297,7 @@ If you know Go, they are similar to Go's...
 [channels](https://go.dev/tour/concurrency/2).
 
 The way I think about them and what makes them one of the most incredible things
-about async programming is that they turn a stream of events into an integrator. I
+about async programming is that they turn a stream of events into an iterator. I
 see that as an essential and core feature of channels in general (no matter 
 the programming langage).
 

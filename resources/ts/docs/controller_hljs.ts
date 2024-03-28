@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 import hljs from "highlight.js/lib/core";
+import c from "highlight.js/lib/languages/c";
 import css from "highlight.js/lib/languages/css";
 import ini from "highlight.js/lib/languages/ini";
 import json from "highlight.js/lib/languages/json";
@@ -15,6 +16,7 @@ import yaml from "highlight.js/lib/languages/yaml";
 
 import { stimulus } from "../stimulus";
 
+hljs.registerLanguage("c", c);
 hljs.registerLanguage("css", css);
 hljs.registerLanguage("ini", ini);
 hljs.registerLanguage("json", json);

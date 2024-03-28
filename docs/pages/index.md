@@ -27,7 +27,7 @@ Feel free to reach out and contribute and materials you find valuable.
 
 ## Other Resources
 
-- https://phptherightway.com/
+- [PHP the Right Way](https://phptherightway.com/)
     
     
     Probably the most exhaustive resource about the language itself and it's 

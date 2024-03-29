@@ -1,13 +1,13 @@
 ---
 layout: modernphp:page
 parent: index
-title: How to Write a PHP Extension in Zig?
+title: How to Write a PHP Extension with Zig?
 description: >
     What if I told you that a language extension can bring many memory-safe
     parallel programming features?
 ---
 
-# How to Write a PHP Extension in Zig
+# How to Write a PHP Extension with Zig
 
 Written by: 
 [Mateusz Charytoniuk](https://www.linkedin.com/in/mateusz-charytoniuk)
@@ -60,9 +60,9 @@ extern zend_function_entry myextension_functions[];
 #endif
 ```
 
-As you can see, there are many C macros, which are Zig's weak (arguably) point.
+As you can see, many C macros are Zig's weak (arguably) point.
 
-I am internally conflicted whether I should call that a "weak" point, because
+I am internally conflicted about whether I should call that a "weak" point because
 Zig, by design, decided not to support any macros and that type of 
 metaprogramming - I think rightfully so. On the other hand, that approach
 also makes it harder for Zig to interop with macro-heavy C libraries.
@@ -115,7 +115,7 @@ You need a similar C structure, no matter what extension you intend to write.
 That is the core of our extension. Here, we define our `hello_world` function
 that will be exported into PHP alongside its arguments and return type.
 
-As you can see, we can use C functions directly in Zig code, which is great.
+As you can see, we can use C functions directly with Zig code, which is great.
 
 We can follow [PHP internals](https://www.phpinternalsbook.com/) documentation 
 here.
@@ -269,7 +269,7 @@ php -d extension=./modules/my_php_extension.so -r 'echo hello_world();'
 
 You should see `Hello from ZIG!`.
 
-Congratulations! You have just written a PHP extension in Zig!
+Congratulations! You have just written a PHP extension with Zig!
 
 ## Conclusion
 

@@ -55,6 +55,10 @@
     margin-top: 0;
   }
 
+  iframe {
+    min-height: 450px;
+  }
+
   ol, ul {
     padding-left: 30px;
 

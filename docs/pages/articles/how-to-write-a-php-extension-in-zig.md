@@ -12,6 +12,8 @@ description: >
 Written by: 
 [Mateusz Charytoniuk](https://www.linkedin.com/in/mateusz-charytoniuk)
 
+https://youtube.com/watch?v=-27aZtc3VbY
+
 When writing code in a scripting language, sometimes you need that extra bit 
 of performance (or maybe an async feature from [Zig](https://ziglang.org/)). 
 In that case, consider using it in your project.

@@ -1,18 +1,18 @@
 @import url("./_reset.css");
+@import url("./_fonts.css");
 @import url("./_formatted-content.css");
 
 :root {
   --color-aside-background: var(--color-body-background);
   --color-body-background: white;
-  --color-body-font: #111;
-  --color-body-font-darker: #000;
-  --color-border: #bbb;
-  --color-link-active: #8db3ff;
+  --color-body-font: #050505;
+  --color-border: var(--color-body-font);
+  --color-link-active: #ffc764;
   --color-link-decoration: var(--color-link-active);
   --color-primary-banner-background: var(--color-body-background);
   --color-primary-banner-font: var(--color-body-font);
   --color-primary-footer-background: var(--color-body-background);
-  --color-primary-navigation-background: var(--color-body-background);
+  --color-primary-navigation-background: #ffc764;
   --color-text-decoration-highlight: var(--color-body-font);
   --color-tag-background: transparent;
   --color-tag-border: var(--color-body-font);
@@ -20,9 +20,9 @@
   --font-family-body: "Noto Sans", sans-serif;
   --font-family-serif: "Noto Serif", Garamond, Georgia, serif;
   --font-family-monospace: "Noto Mono", monospace;
-  --height-primary-navigation: 70px;
   --height-scrollbar-horizontal: 8px;
   --width-scrollbar-vertical: 8px;
+  --z-index-breadcrumbs: 1;
 
   @media screen and (max-height: 1199px) {
     --font-size-base: 18px;
@@ -70,21 +70,30 @@ a:active,
   min-height: 100vh;
 }
 
-.breadcrumbs {
+.breadcrumbs,
+.primary-navigation {
   align-items: center;
   border-bottom: 1px solid var(--color-border);
   display: flex;
-  flex-direction: row-reverse;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  row-gap: 10px;
+  flex-wrap: nowrap;
+  font-size: var(--font-size-smaller);
+  overflow-x: auto;
   width: 100%;
+}
+
+.breadcrumbs {
+  background-color: var(--color-body-background);
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  position: sticky;
+  top: 0;
+  z-index: var(--z-index-breadcrumbs);
 
   .breadcrumb {
     padding: 20px;
     position: relative;
 
-    &::after {
+    &:not(.active)::after {
       content: "›";
       position: absolute;
       right: 0;
@@ -97,14 +106,18 @@ a:active,
 .document-links-group {
   display: flex;
   flex-direction: column;
-  row-gap: 20px;
+  margin: 20px 0;
+  row-gap: 40px;
 }
 
 .document-links-group__link {
+  border: 1px solid var(--color-border);
+  box-shadow: 8px 8px #00000033;
   display: flex;
   flex-direction: column;
+  padding: 40px 20px;
   position: relative;
-  row-gap: 10px;
+  row-gap: 20px;
   text-decoration: none;
 
   &:hover .document-links-group__link__title {
@@ -134,9 +147,45 @@ a:active,
 }
 
 .primary-content {
-  max-width: 80ch;
-  padding: 80px 20px;
+  align-items: center;
+  padding: 80px 0;
   width: 100%;
+
+  > h1,
+  > h2,
+  > h3,
+  > iframe,
+  > ol,
+  > p,
+  > pre,
+  > ul {
+    max-width: 1024px;
+    width: 100%;
+  }
+
+  > h1,
+  > h2,
+  > h3,
+  > iframe,
+  > ol,
+  > p,
+  > ul {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+.primary-navigation {
+  background-color: var(--color-primary-navigation-background);
+
+  a {
+    display: flex;
+    padding: 20px;
+  }
+
+  a:first-of-type {
+    flex-grow: 1;
+  }
 }
 
 .primary-footer {
@@ -145,7 +194,6 @@ a:active,
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: var(--height-primary-navigation);
   padding: 20px;
   row-gap: 20px;
 }

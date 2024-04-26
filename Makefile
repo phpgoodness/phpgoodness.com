@@ -50,6 +50,7 @@ docs/artifact.tar: docs/build
 
 docs/build: config.ini esbuild vendor $(MD_SOURCES) $(PHP_SOURCES)
 	${PHP_BIN} ./bin/resonance.php static-pages:build;
+	cp resources/images/favicon.ico docs/build/favicon.ico;
 
 node_modules: yarn.lock
 	yarnpkg install --check-files --frozen-lockfile --non-interactive;
@@ -109,6 +110,9 @@ esbuild: $(CSS_SOURCES) node_modules
 		$(CSS_ENTRYPOINTS) \
 		$(TS_ENTRYPOINTS) \
 	;
+
+.PHONY: fmt
+fmt: php-cs-fixer
 
 .PHONY: php-cs-fixer
 php-cs-fixer: tools/php-cs-fixer/vendor/bin/php-cs-fixer

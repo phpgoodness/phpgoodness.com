@@ -65,7 +65,6 @@ readonly class Page extends BaseStaticPageLayout
                 <title>PHP Goodness</title>
                 <link rel="preconnect" href="https://fonts.googleapis.com">
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-                <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         HTML;
         yield $renderedPreloads;
         yield $renderedStylesheets;
@@ -74,11 +73,15 @@ readonly class Page extends BaseStaticPageLayout
         </head>
         <body>
             <div class="body-content">
-                <nav class="primary-navigation"></nav>
+                <nav class="primary-navigation">
+                    <a href="https://phpgoodness.com">PHP Goodness</a>
+                    <a href="https://resonance.distantmagic.com" target="_blank">Resonance</a>
+                    <a href="https://intentt.io" target="_blank">Intentt</a>
+                </nav>
                 <main class="primary-content-wrapper">
         HTML;
         yield <<<'HTML'
-                    <nav class="breadcrumbs documentation__breadcrumbs">
+                    <nav class="breadcrumbs">
         HTML;
         yield from $this->breadcrumbs->render($staticPage);
         yield <<<'HTML'
@@ -90,6 +93,9 @@ readonly class Page extends BaseStaticPageLayout
                     </div>
                 </main>
                 <footer class="primary-footer">
+                    <div class="primary-footer__copyright">
+                        <a href="https://github.com/phpgoodness/phpgoodness.com" target="_blank">Edit on GitHub</a>
+                    </div>
                     <div class="primary-footer__copyright">
                         Copyright &copy; {$currentYear}
                         Built with
